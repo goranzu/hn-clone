@@ -19,11 +19,15 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "import", "jsx-a11y"],
+  "plugins": ["react", "import", "jsx-a11y", "react-hooks"],
   "settings": {
     "react": {
       "version": "detect"
     }
   },
-  "rules": {}
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "no-console": "warn",
+    "react/react-in-jsx-scope": "off"
+  }
 }

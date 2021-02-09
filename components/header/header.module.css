@@ -1,0 +1,26 @@
+.header {
+  border-bottom: 3px solid var(--r-blue, blue);
+  padding: 0 2em;
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  margin-left: 2em;
+}
+
+.nav a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 1em 0;
+  color: inherit;
+}
+
+.nav a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.nav a + a {
+  margin-left: 1em;
+}
