@@ -5,12 +5,8 @@ import Header from "../header/Header";
 export default function Layout({ children }) {
   return (
     <>
-      <Head>
-        <title>Hacker News Clone</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Header />
-      <div>{children}</div>
+      {children}
     </>
   );
 }
