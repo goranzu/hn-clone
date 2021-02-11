@@ -1,0 +1,7 @@
+.articles {
+  margin: 1.5em 0 0 0;
+}
+
+.articles article + article {
+  margin-top: 1.5em;
+}

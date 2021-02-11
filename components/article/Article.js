@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styles from "./article.module.css";
 
 export default function Article({
-  index,
+  rank,
   url,
   title,
   domain,
@@ -15,7 +15,7 @@ export default function Article({
 }) {
   return (
     <article className={styles.article}>
-      <span className={styles.count}>{index + 1}</span>
+      <span className={styles.rank}>{rank + 1}</span>
       <h2 className={styles.heading}>
         <a href={url}>
           {title} <small className={styles.domain}>{domain}</small>{" "}
@@ -44,7 +44,7 @@ export default function Article({
 }
 
 Article.propTypes = {
-  index: PropTypes.number.isRequired,
+  rank: PropTypes.number.isRequired,
   points: PropTypes.number.isRequired,
   comments_count: PropTypes.number.isRequired,
   url: PropTypes.string.isRequired,

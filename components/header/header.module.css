@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.logo {
+  cursor: pointer;
+}
+
 .nav {
   margin-left: 2em;
 }
