@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { Hydrate } from "react-query/hydration";
 import PropTypes from "prop-types";
 import Layout from "../components/layout/Layout";
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <QueryClientProvider client={queryClientRef.current}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <Hydrate state={pageProps.dehydratedState}>
         <Layout>
           <Component {...pageProps} />
