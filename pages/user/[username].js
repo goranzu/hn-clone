@@ -1,14 +1,18 @@
 import axios from "axios";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { QueryClient, useQuery } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import Container from "../../components/container/Container";
+import DOMPurify from "isomorphic-dompurify";
 
 const QUERY_ID = "usersQuery";
 
 export default function TopArticles() {
   const { query } = useRouter();
-  const { data } = useQuery(QUERY_ID, async () => getUser(query.username));
+  const { data } = useQuery(QUERY_ID, async () => getUser(query.username), {
+    staleTime: Infinity,
+  });
 
   if (data == null) {
     return (
@@ -17,10 +21,29 @@ export default function TopArticles() {
       </Container>
     );
   }
+
+  function createAbout() {
+    return { __html: DOMPurify.sanitize(data.about) };
+  }
+
   return (
-    <div>
-      <h1>users</h1>
-    </div>
+    <Container>
+      <Head>
+        <title>Hacker News Clone | User {query.username}</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main>
+        <article>
+          <h3>{data.id}</h3>
+          <div dangerouslySetInnerHTML={createAbout()} />
+          <p>
+            <span>
+              karma: {data.karma}, created {data.created}
+            </span>
+          </p>
+        </article>
+      </main>
+    </Container>
   );
 }
 
@@ -40,7 +63,7 @@ export async function getServerSideProps({ params }) {
 
 async function getUser(username) {
   const { data } = await axios.get(
-    `https://api.hnpwa.com/v0/users/${username}.json`,
+    `https://api.hnpwa.com/v0/user/${username}.json`,
   );
   return data;
 }
