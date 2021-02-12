@@ -25,7 +25,7 @@ export default function Article({
         {/* points - user - timeAgo | comments */}
         {points > 0 && `${points} points, by `}
         {user.length > 0 && (
-          <Link href="/">
+          <Link href={`/user/${user}`}>
             <a className={styles.user}>{user}</a>
           </Link>
         )}{" "}
