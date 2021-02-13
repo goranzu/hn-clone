@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { QueryClient, useQuery } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import Container from "../../components/container/Container";
-import DOMPurify from "isomorphic-dompurify";
+import User from "../../components/user/User";
 
 const QUERY_ID = "usersQuery";
 
@@ -22,10 +22,6 @@ export default function TopArticles() {
     );
   }
 
-  function createAbout() {
-    return { __html: DOMPurify.sanitize(data.about) };
-  }
-
   return (
     <Container>
       <Head>
@@ -33,15 +29,12 @@ export default function TopArticles() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <article>
-          <h3>{data.id}</h3>
-          <div dangerouslySetInnerHTML={createAbout()} />
-          <p>
-            <span>
-              karma: {data.karma}, created {data.created}
-            </span>
-          </p>
-        </article>
+        <User
+          about={data.about}
+          created={data.created}
+          id={data.id}
+          karma={data.karma}
+        />
       </main>
     </Container>
   );

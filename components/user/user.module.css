@@ -1,0 +1,11 @@
+.user {
+  margin-top: 1.5em;
+}
+
+.user a {
+  color: inherit;
+}
+
+.user > * + * {
+  margin-top: 0.5em;
+}

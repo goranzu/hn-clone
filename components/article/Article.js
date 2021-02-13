@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import Link from "next/link";
 import PropTypes from "prop-types";
+import ArticleMeta from "../article-meta/ArticleMeta";
 import styles from "./article.module.css";
 
 export default function Article({
@@ -12,6 +12,7 @@ export default function Article({
   user,
   time_ago,
   comments_count,
+  id,
 }) {
   return (
     <article className={styles.article}>
@@ -21,24 +22,13 @@ export default function Article({
           {title} <small className={styles.domain}>{domain}</small>{" "}
         </a>
       </h2>
-      <p className={styles.meta}>
-        {/* points - user - timeAgo | comments */}
-        {points > 0 && `${points} points, by `}
-        {user.length > 0 && (
-          <Link href={`/user/${user}`}>
-            <a className={styles.user}>{user}</a>
-          </Link>
-        )}{" "}
-        {time_ago}{" "}
-        {comments_count > 0 && (
-          <>
-            {"| "}
-            <Link href="/">
-              <a className={styles.comments}>{comments_count} comments</a>
-            </Link>
-          </>
-        )}
-      </p>
+      <ArticleMeta
+        comments_count={comments_count}
+        points={points}
+        user={user}
+        time_ago={time_ago}
+        id={id}
+      />
     </article>
   );
 }
@@ -52,4 +42,5 @@ Article.propTypes = {
   domain: PropTypes.string.isRequired,
   user: PropTypes.string.isRequired,
   time_ago: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };

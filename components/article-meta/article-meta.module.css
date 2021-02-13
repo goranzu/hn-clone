@@ -1,0 +1,10 @@
+.meta {
+  margin-left: var(--m-left);
+  font-size: 0.9rem;
+}
+
+.meta .domain,
+.meta .user,
+.meta .comments {
+  text-decoration: underline;
+}

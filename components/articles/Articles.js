@@ -18,6 +18,7 @@ export default function Articles({ articles, page }) {
           title={preview.title}
           url={preview.url}
           user={preview.user || ""}
+          id={preview.id}
         />
       ))}
     </main>
