@@ -6,11 +6,16 @@ import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import ArticleMeta from "../../components/article-meta/ArticleMeta";
 import Container from "../../components/container/Container";
+import Comment from "../../components/comment/Comment";
+import CommentsList from "../../components/comments-list/CommentsList";
+import styles from "./item-page.module.css";
 
 export default function ItemPage() {
+  // TODO: Style the loading state
+  // TODO: Fix the logo
   const { query } = useRouter();
   const { data, status, error } = useQuery(
-    "item",
+    ["item", query.id],
     async () => axios.get(`https://api.hnpwa.com/v0/item/${query.id}.json`),
     {
       staleTime: 60 * 60 * 60 * 5,
@@ -40,9 +45,9 @@ export default function ItemPage() {
       </Head>
       <main>
         <article>
-          <header>
+          <section>
             <Link href={article.url}>
-              <a>
+              <a className={styles.titleLink}>
                 <h2>{article.title}</h2>
                 <p>{article.domain}</p>
               </a>
@@ -54,34 +59,17 @@ export default function ItemPage() {
               time_ago={article.time_ago}
               user={article.user}
             />
-          </header>
-
-          <section>
-            {article.comments.length > 0 &&
-              article.comments.map((comment) => {
-                return (
-                  <div key={comment.id}>
-                    <p>
-                      {comment.user}, {comment.time_ago}
-                    </p>
-                    <br />
-                    <p>{comment.content}</p>
-                    <br />
-                    {comment.comments.length > 0 &&
-                      comment.comments.map((comment) => {
-                        return (
-                          <>
-                            <p>
-                              {comment.user}, {comment.time_ago}
-                            </p>
-                            <p>{comment.content}</p>
-                          </>
-                        );
-                      })}
-                  </div>
-                );
-              })}
           </section>
+
+          {article.comments.length > 0 ? (
+            <section>
+              <CommentsList>
+                {article.comments.map((comment) => {
+                  return <Comment key={comment.id} comment={comment} />;
+                })}
+              </CommentsList>
+            </section>
+          ) : null}
         </article>
       </main>
     </Container>

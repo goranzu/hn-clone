@@ -7,4 +7,5 @@
 .meta .user,
 .meta .comments {
   text-decoration: underline;
+  color: inherit;
 }

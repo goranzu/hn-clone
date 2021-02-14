@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import styles from "./header.module.css";
 
@@ -45,7 +46,15 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link href="/top/1">
-        <div className={styles.logo}>logo</div>
+        <div className={styles.logo}>
+          <Image
+            src="/noun_hacker_3472371.png"
+            alt="company logo"
+            aria-hidden={true}
+            width={45}
+            height={45}
+          />
+        </div>
       </Link>
       <nav className={styles.nav}>
         {navLinks.map((link) => {

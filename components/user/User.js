@@ -30,14 +30,12 @@ export default function User({ id, created, karma, about }) {
       <p>karma: {karma}</p>
       <p>About:</p>
       <div dangerouslySetInnerHTML={createAbout()} />
-      <div>
+      <div className={styles.links}>
         {userLinks.map((link, index) => (
-          <>
-            <Link key={link.label} href={`${link.path}id=${id}`}>
-              {link.label}
-            </Link>
+          <p key={link.label}>
+            <Link href={`${link.path}id=${id}`}>{link.label}</Link>
             {index < userLinks.length - 1 && " / "}
-          </>
+          </p>
         ))}
       </div>
     </article>
@@ -47,6 +45,6 @@ export default function User({ id, created, karma, about }) {
 User.propTypes = {
   id: PropTypes.string.isRequired,
   created: PropTypes.string.isRequired,
-  karma: PropTypes.string.isRequired,
+  karma: PropTypes.number,
   about: PropTypes.string,
 };

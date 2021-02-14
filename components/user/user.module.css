@@ -9,3 +9,11 @@
 .user > * + * {
   margin-top: 0.5em;
 }
+
+.links {
+  display: flex;
+}
+
+.links * + * {
+  margin-left: 0.2em;
+}

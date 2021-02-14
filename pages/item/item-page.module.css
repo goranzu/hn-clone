@@ -1,0 +1,9 @@
+.titleLink {
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.titleLink * + * {
+  margin-left: 0.5em;
+}
