@@ -1,4 +1,3 @@
-import Link from "next/link";
 import DOMPurify from "isomorphic-dompurify";
 import PropTypes from "prop-types";
 import styles from "./user.module.css";
@@ -33,7 +32,7 @@ export default function User({ id, created, karma, about }) {
       <div className={styles.links}>
         {userLinks.map((link, index) => (
           <p key={link.label}>
-            <Link href={`${link.path}id=${id}`}>{link.label}</Link>
+            <a href={`${link.path}id=${id}`}>{link.label}</a>
             {index < userLinks.length - 1 && " / "}
           </p>
         ))}

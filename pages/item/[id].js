@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import axios from "axios";
 import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import ArticleMeta from "../../components/article-meta/ArticleMeta";
@@ -12,7 +11,6 @@ import styles from "./item-page.module.css";
 
 export default function ItemPage() {
   // TODO: Style the loading state
-  // TODO: Fix the logo
   const { query } = useRouter();
   const { data, status, error } = useQuery(
     ["item", query.id],
@@ -46,12 +44,10 @@ export default function ItemPage() {
       <main>
         <article>
           <section>
-            <Link href={article.url}>
-              <a className={styles.titleLink}>
-                <h2>{article.title}</h2>
-                <p>{article.domain}</p>
-              </a>
-            </Link>
+            <a href={article.url} className={styles.titleLink}>
+              <h2>{article.title}</h2>
+              <p>{article.domain}</p>
+            </a>
             <ArticleMeta
               comments_count={article.comments_count}
               id={article.id}
