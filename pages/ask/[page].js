@@ -10,7 +10,7 @@ const QUERY_ID = "askArticles";
 export default function AskArticles() {
   const { data, page } = useLoadData({ queryId: QUERY_ID, resource: RESOURCE });
 
-  return <Page data={data} page={page} pageName="New" />;
+  return <Page data={data} page={page} pageName="Ask" />;
 }
 
 export async function getServerSideProps({ params }) {

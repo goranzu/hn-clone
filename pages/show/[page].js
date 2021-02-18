@@ -10,7 +10,7 @@ const QUERY_ID = "showArticles";
 export default function ShowArticles() {
   const { data, page } = useLoadData({ queryId: QUERY_ID, resource: RESOURCE });
 
-  return <Page data={data} page={page} pageName="New" />;
+  return <Page data={data} page={page} pageName="Show" />;
 }
 
 export async function getServerSideProps({ params }) {

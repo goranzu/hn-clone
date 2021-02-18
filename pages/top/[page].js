@@ -8,6 +8,7 @@ const RESOURCE = "news";
 const QUERY_ID = "topArticles";
 
 export default function TopArticles() {
+  // TODO: Switch to getStaticProps
   const { data, page } = useLoadData({ queryId: QUERY_ID, resource: RESOURCE });
 
   return <Page data={data} page={page} pageName="Top" />;
