@@ -3,6 +3,14 @@
   color: inherit;
 }
 
+.content pre {
+  white-space: pre-wrap;
+}
+
+.content a {
+  overflow-wrap: break-word;
+}
+
 .userLink {
   opacity: 0.8;
 }
