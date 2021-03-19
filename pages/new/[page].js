@@ -13,7 +13,14 @@ export default function NewArticles() {
   return <Page data={data} page={page} pageName="New" />;
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { page: "1" } }],
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery(QUERY_ID, async () =>
@@ -24,5 +31,6 @@ export async function getServerSideProps({ params }) {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
+    revalidate: 120, // 2 minutes
   };
 }
