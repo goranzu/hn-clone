@@ -15,7 +15,11 @@ export default function TopArticles() {
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { page: "1" } }],
+    paths: Array.from({ length: 10 }).map((_, i) => {
+      return {
+        params: { page: String((i += 1)) },
+      };
+    }),
     fallback: true,
   };
 }
@@ -31,6 +35,6 @@ export async function getStaticProps({ params }) {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
-    revalidate: 120, // 2 minutes
+    revalidate: 60, // 2 minutes
   };
 }
