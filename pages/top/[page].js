@@ -20,7 +20,7 @@ export async function getStaticPaths() {
         params: { page: String((i += 1)) },
       };
     }),
-    fallback: true,
+    fallback: false,
   };
 }
 
