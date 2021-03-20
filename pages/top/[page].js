@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import Page from "../../components/page/Page";
@@ -8,19 +9,21 @@ const RESOURCE = "news";
 const QUERY_ID = "topArticles";
 
 export default function TopArticles() {
+  const router = useRouter();
   const { data, page } = useLoadData({ queryId: QUERY_ID, resource: RESOURCE });
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   return <Page data={data} page={page} pageName="Top" />;
 }
 
 export async function getStaticPaths() {
+  // Render first page, next pages render on demand.
   return {
-    paths: Array.from({ length: 10 }).map((_, i) => {
-      return {
-        params: { page: String((i += 1)) },
-      };
-    }),
-    fallback: false,
+    paths: [{ params: { page: "1" } }],
+    fallback: true,
   };
 }
 
@@ -35,6 +38,6 @@ export async function getStaticProps({ params }) {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
-    revalidate: 60, // 2 minutes
+    revalidate: 60, // 1 minute
   };
 }

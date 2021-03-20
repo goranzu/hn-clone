@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { QueryClient } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import Page from "../../components/page/Page";
@@ -8,7 +9,12 @@ const RESOURCE = "ask";
 const QUERY_ID = "askArticles";
 
 export default function AskArticles() {
+  const router = useRouter();
   const { data, page } = useLoadData({ queryId: QUERY_ID, resource: RESOURCE });
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   return <Page data={data} page={page} pageName="Ask" />;
 }
@@ -31,6 +37,6 @@ export async function getStaticProps({ params }) {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
-    revalidate: 120, // 2 minutes
+    revalidate: 60, // 1 minute
   };
 }
