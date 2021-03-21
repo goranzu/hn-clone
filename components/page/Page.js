@@ -4,10 +4,18 @@ import Articles from "../articles/Articles";
 import Container from "../container/Container";
 import MoreLink from "../moreLink/MoreLink";
 
+const maxPages = {
+  top: 10,
+  new: 10,
+  show: 2,
+  ask: 2,
+  jobs: 1,
+};
+
 export default function Page({ data, pageName, page }) {
   if (data == null) {
     return (
-      <Container style={{ marginTop: "2em" }}>
+      <Container>
         <p>Something went wrong... Please try again later.</p>
       </Container>
     );
@@ -20,7 +28,7 @@ export default function Page({ data, pageName, page }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Articles page={page} articles={data} />
-      <MoreLink page={page + 1} />
+      {page < maxPages[pageName.toLowerCase()] && <MoreLink page={page + 1} />}
     </Container>
   );
 }

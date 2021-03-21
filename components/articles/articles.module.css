@@ -1,5 +1,6 @@
 .articles {
   margin: 1.5em 0 0 0;
+  padding: 1em 0 2.5em 0;
 }
 
 .articles article + article {

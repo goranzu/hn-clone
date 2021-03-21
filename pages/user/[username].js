@@ -10,7 +10,7 @@ const QUERY_ID = "usersQuery";
 export default function TopArticles() {
   const { query } = useRouter();
   const { data, status } = useQuery(
-    QUERY_ID,
+    `${QUERY_ID}-${query.username}`,
     async () => getUser(query.username),
     {
       staleTime: Infinity,
